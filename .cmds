@@ -30,7 +30,7 @@ git_store () {
     git_repo=$HOME_DIR
     if [[ -e $git_repo ]]; then
         cd $git_repo \
-            && git commit -a -m 'incremental commit'
+            && git commit -a -m 'Incremental commit'
         cd $git_repo \
             && git push -u origin master
     else
