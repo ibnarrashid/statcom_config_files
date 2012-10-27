@@ -1,0 +1,40 @@
+# ~/.mutt/muttrc
+
+set imap_user       =   $EMAIL_ADDRESS
+set imap_pass       =   '$PASSWORD'
+set my_user         =   $EMAIL_ADDRESS
+set my_pass         =   '$PASSWORD'
+set folder          =   imaps://imap.gmail.com/
+set spoolfile       =   +INBOX
+set header_cache    =   ~/.mutt/hcache
+set postponed       =   +[Gmail]/Drafts
+set imap_keepalive  =   300
+set mail_check      =   300
+set smtp_url        =   smtps://$my_user:$my_pass@smtp.gmail.com
+set ssl_force_tls   =   yes
+set editor          =   '/usr/bin/vim'
+
+unset imap_passive
+
+mailboxes           =   +INBOX
+
+color attachment yellow default
+color bold red default
+color header cyan default *
+color hdrdefault cyan default
+color index green default ~A
+color indicator brightgreen black
+color markers black default
+color message brightblack default
+color normal white default
+color quoted green default
+color search yellow default
+color signature black default
+color status brightwhite default
+color tilde black default
+color tree green default
+color underline black default
+
+source ~/.mutt/gpg.rc
+
+# EOF.

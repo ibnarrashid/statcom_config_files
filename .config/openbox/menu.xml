@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+<menu id="system-menu" label="Settings">
+  <separator label="WM Settings" />
+  <item label="rc.xml">
+    <action name="Execute">
+      <command>urxvtc -e vim ~/.config/openbox/rc.xml</command>
+    </action>
+  </item>
+  <item label="menu.xml">
+    <action name="Execute">
+      <command>urxvtc -e vim ~/.config/openbox/menu.xml</command>
+    </action>
+  </item>
+  <item label="autostart">
+    <action name="Execute">
+      <command>urxvtc -e vim ~/.config/openbox/autostart</command>
+    </action>
+  </item>
+  <item label="environment">
+    <action name="Execute">
+      <command>urxvtc -e vim ~/.config/openbox/environment</command>
+    </action>
+  </item>
+  <separator />
+  <item label=".xinitrc">
+    <action name="Execute">
+      <command>urxvtc -e vim ~/.xinitrc</command>
+    </action>
+  </item>
+  <separator />
+  <item label="Reload">
+    <action name="Reconfigure" />
+  </item>
+</menu>
+
+<menu id="session-menu" label="Session">
+  <item label="Log Out">
+    <action name="Exit">
+      <prompt>yes</prompt>
+    </action>
+  </item>
+  <separator />
+  <item label="Shut Down">
+    <action name="Execute">
+      <prompt>Are you sure you want to shut down?</prompt>
+      <command>systemctl poweroff</command>
+    </action>
+  </item>
+  <item label="Reboot">
+    <action name="Execute">
+      <prompt>Are you sure you want to reboot?</prompt>
+      <command>systemctl reboot</command>
+    </action>
+  </item>
+</menu>
+
+<menu id="root-menu" label="Openbox 3">
+  <separator label="Applications" />
+  <item label="Console">
+    <action name="Execute">
+      <command>urxvtc</command>
+    </action>
+  </item>
+  <item label="Editor">
+    <action name="Execute">
+      <command>urxvtc -e vim</command>
+    </action>
+  </item>
+  <item label="Browser">
+    <action name="Execute">
+      <command>chromium</command>
+    </action>
+  </item>
+  <separator label="System" />
+  <menu id="system-menu"/>
+  <separator />
+  <menu id="session-menu"/>
+</menu>
+
+</openbox_menu>

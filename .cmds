@@ -1,0 +1,101 @@
+#!/bin/sh
+
+# ~/.cmds
+
+# environment:
+
+export HOME_DIR="/home/ibnarrashid"
+export DOCS_DIR="/home/ibnarrashid/Documents"
+export DOWN_DIR="/home/ibnarrashid/Downloads"
+export MAIL_DIR="/home/ibnarrashid/Mail"
+export PICS_DIR="/home/ibnarrashid/Pictures"
+export PROG_DIR="/home/ibnarrashid/Programs"
+export SOUND_DIR="/home/ibnarrashid/Sounds"
+export WORK_DIR="/home/ibnarrashid/Workspace"
+
+export GREP_COLOR="1;33"
+export EDITOR="/usr/bin/vim"
+export VISUAL="/usr/bin/vim"
+export MAIL="$HOME_DIR/Mail"
+export PAGER="/usr/bin/less"
+export HISTCONTROL="ignoreboth"
+export BROWSER="/usr/bin/chromium"
+export TERMINAL="/usr/bin/urxvtc"
+
+eval $(dircolors -b)
+
+# functions:
+
+git_store () {
+    git_repo=$HOME_DIR
+    if [[ -e $git_repo ]]; then
+        cd $git_repo \
+            && git commit -a -m 'incremental commit'
+        cd $git_repo \
+            && git push -u origin master
+    else
+        echo -e "$git_repo not found!\n"
+    fi
+}
+
+mon_cpu () {
+    watch -n 5 -t \
+        "echo -e 'CPUs running at:\n' \
+        && awk '/cpu MHz/ {print \$4,\$2}' /proc/cpuinfo \
+        | nl"
+}
+
+set_wm () {
+    FILE=$HOME_DIR/.xinitrc
+    sed -i "s/wm=.*/wm=$1/" $FILE
+}
+
+# aliases:
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias view='vim -R'
+alias l='ls'
+alias la='ls -a'
+alias lde='ls -d *'
+alias l.='ls -d .*'
+alias ll='ls -l'
+alias lla='ls -al'
+alias lld='ls -dl'
+alias llde='ls -dl *'
+alias ll.='ls -dl .*'
+alias llh='ls -hl'
+alias llha='ls -ahl'
+alias llhd='ls -dhl'
+alias llhde='ls -dhl *'
+alias llh.='ls -dhl .*'
+alias less='less -NS'
+alias lest='less +F'
+alias pck="ping -c 3 www.google.com \
+    | awk '/[[:digit:]]{1,3}% packet loss/ \
+    {print \$6,\$7,\$8}' | tr -d ','"
+alias heat='watch -t -n 5 acpi -t'
+alias clrout='cp -iv /dev/null'
+alias xread="xrdb $HOME_DIR/.Xresources"
+alias shops='ps -eFl'
+alias time='/usr/bin/time'
+alias maxlight='xbrightness 65535'
+alias highlight='xbrightness 45000'
+alias midlight='xbrightness 35000'
+alias lowlight='xbrightness 25000'
+alias m='mutt'
+alias q='exit'
+alias c='clear'
+alias build='sudo pacman -S'
+alias destroy='sudo pacman -Rns'
+alias construct='yaourt -S'
+alias reflect='sudo reflector -l 10 -f 5 --save \
+    /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist'
+alias upgrade='sudo pacman -Syu'
+alias updates='pacman -Qu'
+alias mirrorlist="cat /etc/pacman.d/mirrorlist"
+
+# EOF.

@@ -1,0 +1,10 @@
+! ~/.Xresources
+
+URxvt.depth:32
+URxvt.background:[91]#000000
+URxvt.foreground:#808000
+URxvt.scrollBar:false
+URxvt.borderLess:false
+URxvt.font:xft:inconsolata:bold:size=13:antialias=true
+
+! EOF.
