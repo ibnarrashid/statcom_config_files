@@ -7,7 +7,7 @@
 export HOME_DIR="/home/ibnarrashid"
 export DOCS_DIR="/home/ibnarrashid/Documents"
 export DOWN_DIR="/home/ibnarrashid/Downloads"
-export MAIL_DIR="/home/ibnarrashid/Mail"
+#export MAIL_DIR="/home/ibnarrashid/Mail"
 export PICS_DIR="/home/ibnarrashid/Pictures"
 export PROG_DIR="/home/ibnarrashid/Programs"
 export SOUND_DIR="/home/ibnarrashid/Sounds"
@@ -30,7 +30,7 @@ git_store () {
     git_repo=$HOME_DIR
     if [[ -e $git_repo ]]; then
         cd $git_repo \
-            && git commit -a -m 'Incremental commit'
+            && git commit -a -m 'incremental commit'
         cd $git_repo \
             && git push -u origin master
     else

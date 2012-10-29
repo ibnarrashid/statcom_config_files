@@ -102,12 +102,12 @@ endfunction
 
 function! CompileCProgram()
   exec "w"
-  exec "!gcc -Werror -Wall -Wextra -O % -o %<"
+  exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
 endfunction
 
 function! CompileAndRunCProgram()
   exec "w"
-  exec "!gcc -Werror -Wall -Wextra -O % -o %<"
+  exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   exec "!./%<"
 endfunction
 
