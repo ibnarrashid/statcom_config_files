@@ -113,12 +113,12 @@ endfunction
 
 function! CompileCPPProgram()
   exec "w"
-  exec "!g++ -Werror -Wall -Wextra -O % -o %<"
+  exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
 endfunction
 
 function! CompileAndRunCPPProgram()
   exec "w"
-  exec "!g++ -Werror -Wall -Wextra -O % -o %<"
+  exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   exec "!./%<"
 endfunction
 
