@@ -28,14 +28,13 @@ if [[ $wm == "dwm" ]]; then
             | tr -d ',') | HR: $(date +"%T")"
         sleep 1
     done &
-fi
-
-if [[ $wm == "openbox-session" ]]; then
+elif [[ $wm == "openbox-session" ]]; then
     sleep 1 && tint2 &
-fi
-
-if [[ $wm == "i3" ]]; then
+elif [[ $wm == "i3" ]]; then
     sleep 1 && urxvtc &
+else
+    echo -en "$wm WM/DE not found!"
+    exit 1
 fi
 
 exec $wm
