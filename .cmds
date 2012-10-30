@@ -96,6 +96,8 @@ alias reflect='sudo reflector -l 10 -f 5 --save \
     /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist'
 alias upgrade='sudo pacman -Syu'
 alias updates='pacman -Qu'
-alias mirrorlist="cat /etc/pacman.d/mirrorlist | less"
+alias mirrorlist='cat /etc/pacman.d/mirrorlist | less'
+alias ansic='gcc -pedantic -ansi -Werror -Wall -Wextra -O'
+alias ansicpp='gcc -pedantic -ansi -Werror -Wall -Wextra -O'
 
 # EOF.
