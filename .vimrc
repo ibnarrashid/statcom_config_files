@@ -107,8 +107,7 @@ endfunction
 
 function! CompileAndRunCProgram()
   exec "w"
-  exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
-  exec "!./%<"
+  exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %< && ./%<"
 endfunction
 
 function! CompileCPPProgram()
@@ -118,8 +117,7 @@ endfunction
 
 function! CompileAndRunCPPProgram()
   exec "w"
-  exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
-  exec "!./%<"
+  exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %< && ./%<"
 endfunction
 
 function! CompileJavaProgram()
@@ -129,8 +127,7 @@ endfunction
 
 function! CompileAndRunJavaProgram()
     exec "w"
-    exec "!javac %"
-    exec "!java %<"
+    exec "!javac % && java %<"
 endfunction
 
 function! LaunchPyInterpreter()
