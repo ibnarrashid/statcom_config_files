@@ -325,7 +325,7 @@
     <!-- Keybindings for running applications -->
     <keybind key="A-p">
       <action name="Execute">
-        <command>dmenu_run -p Run: -nb black -nf white</command>
+        <command>dmenu_run -p Run: -nb black -nf gray</command>
       </action>
     </keybind>
     <keybind key="A-Return">
