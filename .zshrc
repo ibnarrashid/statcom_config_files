@@ -9,7 +9,7 @@ compinit
 colors
 
 PROMPT="
-( %~ ) : "
+( %{$fg[green]%}%~%{$reset_color%} ) : "
 RPROMPT="( %{$fg[green]%}%*%{$reset_color%} )"
 
 export HISTFILE=~/.zsh_history
