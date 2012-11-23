@@ -90,6 +90,7 @@ function! LaunchTerminal()
         exec "!urxvtc &"
     else
         exec "sh"
+    endif
 endfunction
 
 function! LaunchPyInterpreter()
@@ -97,6 +98,7 @@ function! LaunchPyInterpreter()
         exec "!urxvtc -e python &"
     else
         exec "!python"
+    endif
 endfunction
 
 function! LaunchProgramDebugger()
@@ -108,6 +110,7 @@ function! LaunchProgramDebugger()
         exec "pydb %"
     else
         echo "No match found for file type!"
+    endif
 endfunction
 
 function! CompileProgram()
@@ -120,6 +123,7 @@ function! CompileProgram()
       exec "!javac %<"
   else
       echo "No match found for file type!"
+  endif
 endfunction
 
 function! TimeProgramCompilation()
@@ -132,6 +136,7 @@ function! TimeProgramCompilation()
       exec "!time -v javac %<"
   else
       echo "No match found for file type!"
+  endif
 endfunction
 
 function! RunProgram()
@@ -143,6 +148,7 @@ function! RunProgram()
         exec "!python %"
     else
         echo "No match found for file type!"
+    endif
 endfunction
 
 function! TimeProgramRun()
@@ -154,6 +160,7 @@ function! TimeProgramRun()
         exec "!time -v python %"
     else
         echo "No match found for file type!"
+    endif
 endfunction
 
 function! MakeHTMLDocFromSource()
