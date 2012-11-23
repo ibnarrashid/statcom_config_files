@@ -64,7 +64,7 @@ set wrapscan
 
 map <F2> :call LaunchTerminal()<CR>
 map <F3> :call LaunchPyInterpreter()<CR>
-map <F4> :call LauchProgramDebugger()<CR>
+map <F4> :call LaunchProgramDebugger()<CR>
 map <F5> :call CompileProgram()<CR>
 map <F6> :call TimeProgramCompilation()<CR>
 map <F7> :call RunProgram()<CR>
@@ -109,7 +109,7 @@ function! LaunchProgramDebugger()
     elseif &filetype == 'python'
         exec "pydb %"
     else
-        echo "No match found for file type!"
+        echo "Error: no match found for file type!"
     endif
 endfunction
 
@@ -122,7 +122,7 @@ function! CompileProgram()
   elseif &filetype == 'java'
       exec "!javac %<"
   else
-      echo "No match found for file type!"
+      echo "Error: no match found for file type!"
   endif
 endfunction
 
@@ -135,7 +135,7 @@ function! TimeProgramCompilation()
   elseif &filetype == 'java'
       exec "!/usr/bin/time -v javac %<"
   else
-      echo "No match found for file type!"
+      echo "Error: no match found for file type!"
   endif
 endfunction
 
@@ -147,7 +147,7 @@ function! RunProgram()
     elseif &filetype == 'python'
         exec "!python %"
     else
-        echo "No match found for file type!"
+        echo "Error: no match found for file type!"
     endif
 endfunction
 
@@ -159,7 +159,7 @@ function! TimeProgramRun()
     elseif &filetype == 'python'
         exec "!/usr/bin/time -v python %"
     else
-        echo "No match found for file type!"
+        echo "Error: no match found for file type!"
     endif
 endfunction
 
