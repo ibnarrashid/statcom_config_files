@@ -118,7 +118,7 @@ function! CompileProgram()
   if &filetype == 'c'
       exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'cpp'
-      exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+      exec "!g++ -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'java'
       exec "!javac %<"
   else
@@ -131,7 +131,7 @@ function! TimeProgramCompilation()
   if &filetype == 'c'
       exec "!/usr/bin/time -v gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'cpp'
-      exec "!/usr/bin/time -v g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+      exec "!/usr/bin/time -v g++ -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'java'
       exec "!/usr/bin/time -v javac %<"
   else
