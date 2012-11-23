@@ -102,7 +102,7 @@ function! LaunchPyInterpreter()
 endfunction
 
 function! LaunchProgramDebugger()
-    if &filetype == 'c' || &filetype == 'c++'
+    if &filetype == 'c' || &filetype == 'cpp'
         exec "!gdb ./%<"
     elseif &filetype == 'java'
         exec "!jdb %<"
@@ -117,7 +117,7 @@ function! CompileProgram()
   exec "w"
   if &filetype == 'c'
       exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
-  elseif &filetype == 'c++'
+  elseif &filetype == 'cpp'
       exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'java'
       exec "!javac %<"
@@ -130,7 +130,7 @@ function! TimeProgramCompilation()
   exec "w"
   if &filetype == 'c'
       exec "!time -v gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
-  elseif &filetype == 'c++'
+  elseif &filetype == 'cpp'
       exec "!time -v g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'java'
       exec "!time -v javac %<"
@@ -140,7 +140,7 @@ function! TimeProgramCompilation()
 endfunction
 
 function! RunProgram()
-    if &filetype == 'c' || &filetype == 'c++'
+    if &filetype == 'c' || &filetype == 'cpp'
         exec "!./%<"
     elseif &filetype == 'java'
         exec "!java %<"
@@ -152,7 +152,7 @@ function! RunProgram()
 endfunction
 
 function! TimeProgramRun()
-    if &filetype == 'c' || &filetype == 'c++'
+    if &filetype == 'c' || &filetype == 'cpp'
         exec "!time -v ./%<"
     elseif &filetype == 'java'
         exec "!time -v java %<"
