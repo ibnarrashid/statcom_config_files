@@ -29,10 +29,9 @@ eval $(dircolors -b)
 git_store () {
     git_repo=$HOME_DIR
     if [[ -e $git_repo ]]; then
-        cd $git_repo \
-            && git commit -a -m 'incremental commit'
-        cd $git_repo \
-            && git push -u origin master
+        cd $git_repo
+        git commit -a -m 'incremental commit'
+        git push -u origin master
         cd -
     else
         echo -e "$git_repo not found!\n"
