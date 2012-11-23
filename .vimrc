@@ -129,11 +129,11 @@ endfunction
 function! TimeProgramCompilation()
   exec "w"
   if &filetype == 'c'
-      exec "!time -v gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+      exec "!/usr/bin/time -v gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'cpp'
-      exec "!time -v g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+      exec "!/usr/bin/time -v g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
   elseif &filetype == 'java'
-      exec "!time -v javac %<"
+      exec "!/usr/bin/time -v javac %<"
   else
       echo "No match found for file type!"
   endif
@@ -153,11 +153,11 @@ endfunction
 
 function! TimeProgramRun()
     if &filetype == 'c' || &filetype == 'cpp'
-        exec "!time -v ./%<"
+        exec "!/usr/bin/time -v ./%<"
     elseif &filetype == 'java'
-        exec "!time -v java %<"
+        exec "!/usr/bin/time -v java %<"
     elseif &filetype == 'python'
-        exec "!time -v python %"
+        exec "!/usr/bin/time -v python %"
     else
         echo "No match found for file type!"
     endif
