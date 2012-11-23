@@ -4,8 +4,6 @@
 
 if has('gui_running')
     colorscheme desert
-    map <F2> :call LaunchGUITerminal()<CR>
-    map <F3> :call LaunchGUIPyInterpreter()<CR>
     set lines=33
     set columns=93
     set guifont=Monospace\ 11
@@ -15,8 +13,6 @@ if has('gui_running')
     set guicursor+=a:blinkon0
 else
     colorscheme default
-    map <F2> :call LaunchTerminal()<CR>
-    map <F3> :call LaunchPyInterpreter()<CR>
 endif
 
 filetype plugin indent on
@@ -66,18 +62,14 @@ set wrapscan
 
 " Custom Settings
 
-map <F4>    :call   CompileCProgram()<CR>
-map <F5>    :call   CompileAndRunCProgram()<CR>
-map <F6>    :call   CompileCPPProgram()<CR>
-map <F7>    :call   CompileAndRunCPPProgram()<CR>
-map <F8>    :call   CompileJavaProgram()<CR>
-map <F9>    :call   CompileAndRunJavaProgram()<CR>
-map <F10>   :call   InterpretPyProgram()<CR>
-map ;h      :call   MakeHTMLDocFromSource()<CR>
-map ;t      :call   MakePDFDocFromTeX()<CR>
-map ;l      :call   MakePDFDocFromLaTeX()<CR>
-
-nmap <silent> ;s :call ToggleHighlight()<CR>
+map <F2> :call LaunchTerminal()<CR>
+map <F3> :call LaunchPyInterpreter()<CR>
+map <F4> :call LauchProgramDebugger()<CR>
+map <F5> :call CompileProgram()<CR>
+map <F6> :call TimeProgramCompilation()<CR>
+map <F7> :call RunProgram()<CR>
+map <F8> :call TimeProgramRun<CR>
+map ;h   :call MakeHTMLDocFromSource()<CR>
 
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 autocmd BufRead /tmp/mutt-* set textwidth=72
@@ -92,66 +84,80 @@ function! ToggleHighlight()
     endif
 endfunction
 
+
 function! LaunchTerminal()
-    exec "sh"
-endfunction
-
-function! LaunchGUITerminal()
-    exec "!urxvtc &"
-endfunction
-
-function! CompileCProgram()
-  exec "w"
-  exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
-endfunction
-
-function! CompileAndRunCProgram()
-  exec "w"
-  exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %< && ./%<"
-endfunction
-
-function! CompileCPPProgram()
-  exec "w"
-  exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
-endfunction
-
-function! CompileAndRunCPPProgram()
-  exec "w"
-  exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %< && ./%<"
-endfunction
-
-function! CompileJavaProgram()
-    exec "w"
-    exec "!javac %"
-endfunction
-
-function! CompileAndRunJavaProgram()
-    exec "w"
-    exec "!javac % && java %<"
+    if has('gui_running')
+        exec "!urxvtc &"
+    else
+        exec "sh"
 endfunction
 
 function! LaunchPyInterpreter()
-    exec "!/usr/bin/python"
+    if has('gui_running')
+        exec "!urxvtc -e python &"
+    else
+        exec "!python"
 endfunction
 
-function! LaunchGUIPyInterpreter()
-    exec "urxvt -e /usr/bin/python &"
+function! LaunchProgramDebugger()
+    if &filetype == 'c' || &filetype == 'c++'
+        exec "!gdb ./%<"
+    elseif &filetype == 'java'
+        exec "!jdb %<"
+    elseif &filetype == 'python'
+        exec "pydb %"
+    else
+        echo "No match found for file type!"
 endfunction
 
-function! InterpretPyProgram()
-    exec "!/usr/bin/python %"
+function! CompileProgram()
+  exec "w"
+  if &filetype == 'c'
+      exec "!gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+  elseif &filetype == 'c++'
+      exec "!g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+  elseif &filetype == 'java'
+      exec "!javac %<"
+  else
+      echo "No match found for file type!"
+endfunction
+
+function! TimeProgramCompilation()
+  exec "w"
+  if &filetype == 'c'
+      exec "!time -v gcc -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+  elseif &filetype == 'c++'
+      exec "!time -v g++ -pedantic -ansi -Werror -Wall -Wextra -O % -o %<"
+  elseif &filetype == 'java'
+      exec "!time -v javac %<"
+  else
+      echo "No match found for file type!"
+endfunction
+
+function! RunProgram()
+    if &filetype == 'c' || &filetype == 'c++'
+        exec "!./%<"
+    elseif &filetype == 'java'
+        exec "!java %<"
+    elseif &filetype == 'python'
+        exec "!python %"
+    else
+        echo "No match found for file type!"
+endfunction
+
+function! TimeProgramRun()
+    if &filetype == 'c' || &filetype == 'c++'
+        exec "!time -v ./%<"
+    elseif &filetype == 'java'
+        exec "!time -v java %<"
+    elseif &filetype == 'python'
+        exec "!time -v python %"
+    else
+        echo "No match found for file type!"
 endfunction
 
 function! MakeHTMLDocFromSource()
     exec "!source-highlight %"
-endfunction
-
-function! MakePDFDocFromTeX()
-    exec "!pdftex %"
-endfunction
-
-function! MakePDFDocFromLaTeX()
-    exec "!pdflatex %"
 endfunction
 
 " EOF.
