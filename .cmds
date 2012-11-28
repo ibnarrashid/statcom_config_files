@@ -26,7 +26,7 @@ eval $(dircolors -b)
 
 # functions:
 
-git_store () {
+git_store_conf () {
     git_repo=$HOME_DIR
     if [[ -e $git_repo ]]; then
         cd $git_repo
@@ -48,6 +48,17 @@ mon_cpu () {
 set_wm () {
     FILE=$HOME_DIR/.xinitrc
     sed -i "s/wm=.*/wm=$1/" $FILE
+}
+
+mkproject () {
+    mkdir $1
+    if [[ -e $1 ]]; then
+        cd $1
+        git init
+        cd -
+    else
+        echo -e "$1 not found!"
+    fi
 }
 
 # aliases:
@@ -95,6 +106,8 @@ alias upgrade='sudo pacman -Syu'
 alias updates='pacman -Qu'
 alias mirrorlist='cat /etc/pacman.d/mirrorlist | less'
 alias ansic='gcc -pedantic -ansi -Werror -Wall -Wextra -O'
-alias ansicpp='gcc -pedantic -ansi -Werror -Wall -Wextra -O'
+alias ansicpp='g++ -pedantic -ansi -Werror -Wall -Wextra -O'
+alias newc='gcc -Werror -Wall -Wextra -O'
+alias newcpp='g++ -Werror -Wall -Wextra -O'
 
 # EOF.
